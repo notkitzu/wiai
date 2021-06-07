@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Skrypt</title>
+		<meta charset="utf-8">
+		<style>
+			input[type="text"]
+			{
+				width:70px;
+			}
+		</style>
+		<script>
+		
+			function oblicz(id1,id2,id3,id4)
+			{
+				var a = document.getElementById(id1).value;
+				var b = document.getElementById(id2).value;
+				var c = document.getElementById(id3).value;
+				var odp = document.getElementById(id4);
+				if(a=="0" || isNaN(a) || isNaN(b) || isNaN(c))
+					odp.value="Błędne dane!";
+				else
+				{
+					var delta = parseFloat(b)*parseFloat(b) - 4*parseFloat(a)*parseFloat(c);
+					odp.value = "DELTA: " + delta + "\n";
+					if(delta < 0)
+					{
+						odp.value = odp.value + "Delta ujemna brak rozwiązań!";
+					}
+					else if(delta == 0)
+					{
+						odp.value = odp.value + "Jedno rozwiąznie: " + (-1*parseFloat(b)/(2*parseFloat(a)));
+					}
+					else
+					{
+						delta = Math.sqrt(delta);
+						odp.value = odp.value + "Dwa rozwiązania\n";
+						odp.value = odp.value + "X1: " + ((-1*parseFloat(b)-delta)/(2*parseFloat(a))) + "\n";
+						odp.value = odp.value + "X2: " + ((-1*parseFloat(b)+delta)/(2*parseFloat(a))) + "\n";
+					}
+				}				
+			}
+		
+		</script>
+	</head>
+	<body>
+		<h1>Zadanie 1</h1>
+		<input type="text" id="a">x<sup>2</sup> + <input type="text" id="b">x + <input type="text" id="c"> = 0 <button onClick="return oblicz('a','b','c','odp');">oblicz</button>
+		<p>
+			<textarea style="width:400px;height:100px;" id="odp"></textarea>
+		</p>
+	</body>
+</html>
